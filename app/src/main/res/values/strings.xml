@@ -1,0 +1,10 @@
+<resources>
+  <string name="app_name" translatable="false">AMAPI Extensibility Demo</string>
+
+  <string name="clear_app_name_hint" description="Input text field of package data to be cleared. [CHAR LIMIT=NONE]">Clear app package name</string>
+  <string name="clear_app_button" description="Button text for app data to be cleared. [CHAR LIMIT=NONE]">Clear app data</string>
+  <string name="command_id_hint" description="Input text field of command ID. [CHAR LIMIT=NONE]">Command Id</string>
+  <string name="get_command_button" description="Button text for command to be fetched. [CHAR LIMIT=NONE]">Get command</string>
+
+  <string name="license_button_txt" description="See licenses button text. [CHAR LIMIT=NONE]">See Licenses</string>
+</resources>
