@@ -41,16 +41,26 @@ android {
     }
 
     compileOptions {
+        // Flag to enable support for the new language APIs
+        coreLibraryDesugaringEnabled true
+        // Sets Java compatibility to Java 8
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
     kotlinOptions {
-        freeCompilerArgs = ['-Xjvm-default=enable']
         jvmTarget = '1.8'
+    }
+
+    buildFeatures {
+        viewBinding true
     }
 }
 
 dependencies {
+    // Version 1.2.0 requires AGP 7.3.0-beta03+
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.5'
+
     implementation 'io.grpc:grpc-okhttp:1.44.0' // CURRENT_GRPC_VERSION
     implementation 'com.google.android.libraries.enterprise.amapi:amapi:1.0.1'
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
