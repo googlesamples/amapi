@@ -16,6 +16,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.amapi.extensibility.demo" >
 
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES"/>
+
     <queries>
         <package android:name="com.google.android.apps.work.clouddpc" />
     </queries>
