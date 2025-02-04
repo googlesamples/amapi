@@ -20,7 +20,8 @@ import com.google.android.managementapi.commands.model.Command
 
 object InMemoryCommandRepository {
   private val commandLiveData: MutableLiveData<Command> = MutableLiveData()
-  fun onCommandStatusChanged(command: Command?) {
+
+  fun onCommandStatusChanged(command: Command) {
     commandLiveData.postValue(command)
   }
 

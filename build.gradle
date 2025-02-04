@@ -14,14 +14,14 @@
  */
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
-    ext.kotlin_version = "1.8.22"
+    ext.kotlin_version = "2.1.0"
     repositories {
         google()
         mavenCentral()
     }
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        classpath 'com.android.tools.build:gradle:8.1.2'
+        classpath 'com.android.tools.build:gradle:8.7.3'
         classpath 'com.google.android.gms:strict-version-matcher-plugin:1.2.1'
         classpath 'com.google.android.gms:oss-licenses-plugin:0.10.6'
 
