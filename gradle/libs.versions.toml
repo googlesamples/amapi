@@ -1,0 +1,35 @@
+[versions]
+agp = "8.10.0"
+kotlin = "2.1.21"
+coreKtx = "1.16.0"
+junit = "4.13.2"
+junitVersion = "1.2.1"
+espressoCore = "3.6.1"
+lifecycleRuntimeKtx = "2.9.0"
+appcompatVersion = "1.7.0"
+constraintLayoutVersion = "2.2.1"
+amapiVersion = "1.3.0"
+material = "1.12.0"
+playServicesOssLicenses = "17.1.0"
+rules = "1.6.1"
+runner = "1.6.2"
+googleServices = "4.4.2"
+
+[libraries]
+androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+androidx-rules = { module = "androidx.test:rules", version.ref = "rules" }
+androidx-runner = { module = "androidx.test:runner", version.ref = "runner" }
+junit = { group = "junit", name = "junit", version.ref = "junit" }
+androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
+androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
+androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtx" }
+androidx-constraint-layout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintLayoutVersion" }
+androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompatVersion" }
+amapi = { group = "com.google.android.libraries.enterprise.amapi", name = "amapi", version.ref = "amapiVersion" }
+coroutines = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android" }
+material = { module = "com.google.android.material:material", version.ref = "material" }
+play-services-oss-licenses = { module = "com.google.android.gms:play-services-oss-licenses", version.ref = "playServicesOssLicenses" }
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "agp" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }

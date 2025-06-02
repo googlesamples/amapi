@@ -1,6 +1,8 @@
 .idea
 .gradle
+.kotlin
 local.properties
 build
 capture
+app/release
 

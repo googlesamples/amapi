@@ -14,4 +14,7 @@
  */
 package com.amapi.extensibility.demo.util
 
+/**
+ * The tag used for logging throughout the Amapi Extensibility Demo application.
+ */
 const val TAG = "AmapiExtensibilityDemo"

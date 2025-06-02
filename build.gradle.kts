@@ -12,5 +12,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-include ':app'
-rootProject.name = "AmapiExtensibilityDemo"
+
+plugins {
+    alias(libs.plugins.android.application) apply false
+    alias(libs.plugins.kotlin.android) apply false
+    id("com.google.android.gms.oss-licenses-plugin") version("0.10.6") apply(false)
+}

@@ -16,10 +16,8 @@ package com.amapi.extensibility.demo.commands
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
-import com.amapi.extensibility.demo.R
 import com.amapi.extensibility.demo.databinding.ActivityCommandBinding
 import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
 
@@ -34,9 +32,7 @@ class CommandActivity : AppCompatActivity() {
 
     commandViewModel = ViewModelProvider(this)[CommandViewModel::class.java]
     commandViewModel.commandResultLiveData.observe(this) { results ->
-      findViewById<TextView>(R.id.command_result_textview).apply {
-        text = results
-      }
+      binding.commandResultTextview.text = results
     }
 
     setupListeners()

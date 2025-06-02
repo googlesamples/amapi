@@ -17,11 +17,19 @@ package com.amapi.extensibility.demo.commands
 import com.google.android.managementapi.commands.model.Command
 import java.lang.StringBuilder
 
-/** Contains command related utility methods. */
+/**
+ * Utility methods for working with [Command] objects.
+ */
 object CommandUtils {
   /**
-   * Returns the properly formatted string representation of the given [Command] in a way that can
-   * be logged and/or surfaced in UI.
+   * Generates a human-readable string representation of a [Command] for logging or UI display.
+   *
+   * The output includes the command's ID, creation time, completion time, and state.
+   * If the command's status is `CLEAR_APPS_DATA_STATUS`, it will also include a detailed breakdown
+   * of the status of each app, mapping app identifiers to their clear status.
+   *
+   * @param command The [Command] to parse and format.
+   * @return A formatted string representation of the command.
    */
   fun parseCommandForPrettyPrint(command: Command): String {
     val stringBuilder =
