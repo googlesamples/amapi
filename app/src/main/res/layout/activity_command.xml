@@ -18,7 +18,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CommandActivity">
+    tools:context=".commands.CommandActivity">
 
   <TextView
       android:id="@+id/command_result_textview"
@@ -31,7 +31,7 @@
       app:layout_constraintTop_toTopOf="parent"
       app:layout_constraintLeft_toLeftOf="parent"
       app:layout_constraintRight_toRightOf="parent"
-      android:text="Issue Command result"/>
+      android:text="@string/issue_command_result"/>
 
   <EditText
       android:id="@+id/command_id_edittext"
@@ -89,6 +89,5 @@
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toBottomOf="@+id/clear_app_command_button"/>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

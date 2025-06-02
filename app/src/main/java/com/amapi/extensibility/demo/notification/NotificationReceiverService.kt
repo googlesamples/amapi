@@ -22,8 +22,22 @@ import com.google.android.managementapi.commands.CommandListener
 import com.google.android.managementapi.commands.model.Command
 import com.google.android.managementapi.notification.NotificationReceiverService
 
+/**
+ * Service responsible for receiving and processing notifications from Android Policy Controller.
+ *
+ * This service extends [NotificationReceiverService] to handle incoming notifications.
+ * It provides a custom [CommandListener] to listen for changes in command status.
+ */
 class NotificationReceiverService : NotificationReceiverService() {
 
+  /**
+   * Returns a [CommandListener] that listens for command status changes.
+   *
+   * This listener is notified when the status of a command changes. When a command's status
+   * changes, the listener logs the change and updates the in-memory command repository.
+   *
+   * @return A [CommandListener] instance.
+   */
   override fun getCommandListener(): CommandListener {
     return object : CommandListener {
       override fun onCommandStatusChanged(command: Command) {

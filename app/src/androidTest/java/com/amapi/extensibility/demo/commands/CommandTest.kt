@@ -18,36 +18,75 @@ import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.action.ViewActions.replaceText
 import androidx.test.espresso.assertion.ViewAssertions
+import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.espresso.matcher.ViewMatchers.withSubstring
+import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import androidx.test.rule.ActivityTestRule
 import com.amapi.extensibility.demo.R
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 
-/** Tests main activity from test app. */
+/**
+ * Instrumentation tests for CommandActivity.
+ */
 @RunWith(AndroidJUnit4::class)
 class CommandTest {
-  @Rule
-  @JvmField
-  var mActivityRule: ActivityTestRule<CommandActivity> =
-    ActivityTestRule(CommandActivity::class.java)
+  /**
+   *  Replaced ActivityTestRule with ActivityScenarioRule to better manage the Activity's lifecycle.
+   */
+  @get:Rule
+  val activityRule = ActivityScenarioRule(CommandActivity::class.java)
 
+  /**
+   * Tests retrieving a command by ID.
+   */
   @Test
-  fun getCommandById() {
+  fun getCommandById_displaysUnimplementedMessage() {
+    // Arrange: Input a command ID.
     onView(withId(R.id.command_id_edittext)).perform(replaceText("1"))
+
+    // Act: Click the button to retrieve the command.
     onView(withId(R.id.get_command_button)).perform(click())
+
+    // Assert: Verify the result text view displays the expected "UNIMPLEMENTED" message.
     onView(withId(R.id.command_result_textview))
       .check(ViewAssertions.matches(withSubstring("UNIMPLEMENTED")))
   }
 
   @Test
-  fun issueCommand() {
-    onView(withId(R.id.clear_app_package_edittext)).perform(replaceText("com.android.settings"))
+  fun testClearAppDataCommand_editTextIsPresent(){
+    onView(withId(R.id.clear_app_package_edittext))
+      .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
+  }
+
+  @Test
+  fun testClearAppDataCommand_editTextCanBeFilled(){
+    onView(withId(R.id.clear_app_package_edittext)).perform(replaceText(TEST_PACKAGE_NAME))
+    onView(withId(R.id.clear_app_package_edittext))
+      .check(ViewAssertions.matches(ViewMatchers.withText(TEST_PACKAGE_NAME)))
+  }
+
+  @Test
+  fun testClearAppDataCommand_buttonIsPresent(){
+    onView(withId(R.id.clear_app_command_button))
+      .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
+  }
+
+  /**
+   * Verifies that attempting to clear an app's data via the UI results in the correct "UNIMPLEMENTED"
+   * message being displayed. This checks that the command is received, but the action is not supported yet.
+   */
+  @Test
+  fun testClearAppDataCommand_displaysUnimplementedMessage() {
+    onView(withId(R.id.clear_app_package_edittext)).perform(replaceText(TEST_PACKAGE_NAME))
     onView(withId(R.id.clear_app_command_button)).perform(click())
     onView(withId(R.id.command_result_textview))
       .check(ViewAssertions.matches(withSubstring("UNIMPLEMENTED")))
+  }
+
+  companion object {
+    private const val TEST_PACKAGE_NAME = "com.android.settings"
   }
 }

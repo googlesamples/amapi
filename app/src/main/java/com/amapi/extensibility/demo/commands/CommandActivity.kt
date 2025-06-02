@@ -16,36 +16,37 @@ package com.amapi.extensibility.demo.commands
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
-import com.amapi.extensibility.demo.R
+import com.amapi.extensibility.demo.databinding.ActivityCommandBinding
 import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
 
 class CommandActivity : AppCompatActivity() {
   private lateinit var commandViewModel: CommandViewModel
+  private lateinit var binding: ActivityCommandBinding
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    setContentView(R.layout.activity_command)
-    commandViewModel = ViewModelProvider(this).get(CommandViewModel::class.java)
+    binding = ActivityCommandBinding.inflate(layoutInflater)
+    setContentView(binding.root)
+
+    commandViewModel = ViewModelProvider(this)[CommandViewModel::class.java]
     commandViewModel.commandResultLiveData.observe(this) { results ->
-      findViewById<TextView>(R.id.command_result_textview).apply {
-        text = results
+      binding.commandResultTextview.text = results
+    }
+
+    setupListeners()
+  }
+
+  private fun setupListeners() {
+    binding.getCommandButton.setOnClickListener {
+      commandViewModel.getCommand(binding.commandIdEdittext.text.toString())
       }
-    }
-    findViewById<Button>(R.id.get_command_button).setOnClickListener {
-      commandViewModel.getCommand(findViewById<EditText>(R.id.command_id_edittext).text.toString())
-    }
-    findViewById<Button>(R.id.clear_app_command_button).setOnClickListener {
-      commandViewModel.issueClearAppDataCommand(
-        findViewById<EditText>(R.id.clear_app_package_edittext).text.toString()
-      )
-    }
-    findViewById<Button>(R.id.license_button).setOnClickListener {
+    binding.clearAppCommandButton.setOnClickListener {
+      commandViewModel.issueClearAppDataCommand(binding.clearAppPackageEdittext.text.toString())
+      }
+    binding.licenseButton.setOnClickListener {
       startActivity(Intent(this, OssLicensesMenuActivity::class.java))
-    }
+      }
   }
 }
