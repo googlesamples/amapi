@@ -7,4 +7,37 @@
   <string name="get_command_button" description="Button text for command to be fetched. [CHAR LIMIT=NONE]">Get command</string>
 
   <string name="license_button_txt" description="See licenses button text. [CHAR LIMIT=NONE]">See Licenses</string>
+  <string name="local_commands" description="Title of the button to navigate to local commands screen [CHAR LIMIT=NONE]">Local Commands</string>
+  <string name="custom_app" description="Title of the button to navigate to Custom App commands screen [CHAR LIMIT=NONE]">Custom Apps (Package Installer)</string>
+  <string name="command_id" description="Id of the command [CHAR LIMIT=NONE]">Command Id</string>
+  <string name="get_command" description="Label of the button to get the command [CHAR LIMIT=NONE]">Get Command</string>
+  <string name="package_name" description="Package name of the application to which command should be applied [CHAR LIMIT=NONE]">Package Name</string>
+  <string name="issue_clear_app_data_command" description="Label of the button to issue the command [CHAR LIMIT=NONE]">Issue Clear App Data Command</string>
+  <string translatable="false" name="clouddpc_package_name">com.google.android.apps.work.clouddpc</string>
+  <string translatable="false" name="clouddpc_receiver_class_name">com.google.android.apps.work.clouddpc.receivers.CustomAppBroadcastReceiver</string>
+  <string translatable="false" name="clouddpc_provide_uri_action">com.google.android.apps.work.clouddpc.ACTION_PROVIDE_CUSTOM_APP_URI</string>
+  <string translatable="false" name="file_provider_authority">com.google.android.apps.work.clouddpc.customapp.provider</string>
+  <string translatable="false" name="files_directory_name">apks</string>
+  <string name="custom_app_screen_title" description="Title for the custom apps (package installer) screen [CHAR LIMIT=NONE]">Custom Apps (PI) Demo</string>
+  <string name="download_url" description="Download URL [CHAR LIMIT=NONE]">Download URL</string>
+  <string name="app_package_name" description="Name of the package [CHAR LIMIT=NONE]">Package name</string>
+  <string name="use_example_apk" description="Use example apk url [CHAR LIMIT=NONE]">Use example apk</string>
+  <string name="download_apk" description="Label of the button to download the app [CHAR LIMIT=NONE]">Download apk</string>
+  <string name="install_app" description="Label of the button to send the install command [CHAR LIMIT=NONE]">Install App</string>
+  <string name="uninstall_app" description="Label of the button to send the uninstall command [CHAR LIMIT=NONE]">Uninstall App</string>
+  <string name="send_command_title" description="Title for the section of sending install and uninstall commands [CHAR LIMIT=NONE]">Send custom app commands</string>
+  <string name="download_apk_title" description="Title for the section of downloading apks [CHAR LIMIT=NONE]">Download apk file</string>
+  <string name="downloaded_apks_title" description="Title for the section of displaying downloaded apks [CHAR LIMIT=NONE]">Downloaded apk files</string>
+  <string name="delete_apks" description="Label of the button to delete downloaded apk files [CHAR LIMIT=NONE]">Delete all</string>
+  <string name="handle_file_provider" description="Label next to the switch that toggles handling file provider within the app [CHAR LIMIT=NONE]">Handle FileProvider within the app before sending the command to AMAPI SDK</string>
+  <string name="ui_stage_start_message" description="Message to be displayed when system is ready to download and fetch apk [CHAR LIMIT=NONE]">Ready to fetch apk. Provide link to proceed, or advance to the install app section.</string>
+  <string name="ui_stage_downloading_file" description="Message to be displayed when system is downloading the provided file [CHAR LIMIT=NONE]">Downloading apk…</string>
+  <string name="ui_stage_file_downloaded_message" description="Message to be displayed when system has downloaded the provided file [CHAR LIMIT=NONE]">APK file successfully downloaded. Issue install or uninstall app command.</string>
+  <string name="ui_stage_command_sent_message" description="Message to be displayed when system has sent the command to AMAPI SDK [CHAR LIMIT=NONE]">Command has been issued successfully.</string>
+  <string name="ui_stage_command_failed_message" description="Message to be displayed when system has failed to send the command to AMAPI SDK [CHAR LIMIT=NONE]">Error in action</string>
+  <string name="ui_stage_command_failed_message_no_error" description="Message to be displayed when system has failed to send the command to AMAPI SDK [CHAR LIMIT=NONE]">Failed to display error, refer to logcat for details.</string>
+ <string name="ui_stage_empty_url_or_package_name_message" description="Message to be shown when the user has not provided a valid URL or package name [CHAR LIMIT=NONE]">Download URL or package name is not specified!</string>
+ <string name="error_package_name_not_specified" description="Message to be shown when the user has not provided a package name [CHAR LIMIT=NONE]">Package name is not specified!</string>
+  <string name="error_download_failed" description="Message to be shown when the download has failed [CHAR LIMIT=NONE]">Failed to download apk!</string>
+  <string name="error_command_execution_failed" description="Message to be shown when the command execution has failed [CHAR LIMIT=NONE]">Failed to execute command!</string>
 </resources>

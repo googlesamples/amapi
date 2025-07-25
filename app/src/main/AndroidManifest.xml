@@ -35,10 +35,12 @@
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".customapp.CustomAppActivity"
+            android:exported="true" />
 
         <service
           android:name=".notification.NotificationReceiverService"
@@ -52,6 +54,14 @@
         android:name="com.google.android.gms.oss.licenses.OssLicensesActivity"
         android:exported="false"/>
 
+        <provider
+            android:name="com.google.android.managementapi.customapp.provider.CustomAppProvider"
+            android:authorities="${applicationId}.AmapiCustomAppProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_provider_paths" />
+        </provider>
     </application>
-
 </manifest>

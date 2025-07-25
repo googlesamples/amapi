@@ -17,15 +17,24 @@ package com.amapi.extensibility.demo.commands
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.google.android.managementapi.commands.model.Command
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
 
 object InMemoryCommandRepository {
+  private val _commandResult = MutableStateFlow("")
+  val commandResult = _commandResult.asStateFlow()
   private val commandLiveData: MutableLiveData<Command> = MutableLiveData()
 
   fun onCommandStatusChanged(command: Command) {
     commandLiveData.postValue(command)
+    _commandResult.value = CommandUtils.parseCommandForPrettyPrint(command)
   }
 
   fun getCommandLiveData(): LiveData<Command> {
     return commandLiveData
+  }
+
+  fun setValue(value: String) {
+    _commandResult.value = value
   }
 }

@@ -12,12 +12,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-pluginManagement {
-    repositories {
-        google()
-        mavenCentral()
-        gradlePluginPortal()
+package com.amapi.extensibility.demo.customapp
+
+import androidx.test.espresso.idling.CountingIdlingResource
+
+object AppIdlingResource {
+  private const val RESOURCE = "GENERAL_RESOURCE"
+  private val countingIdlingResource: CountingIdlingResource = CountingIdlingResource(RESOURCE)
+
+  fun getIdlingResource() = countingIdlingResource
+
+  fun increment() {
+    countingIdlingResource.increment()
+  }
+
+  fun decrement() {
+    if (!countingIdlingResource.isIdleNow) {
+      countingIdlingResource.decrement()
     }
+  }
 }
-include ':app'
-rootProject.name = "AmapiExtensibilityDemo"
