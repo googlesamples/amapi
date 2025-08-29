@@ -15,7 +15,6 @@
 package com.amapi.extensibility.demo.commands
 
 import com.google.android.managementapi.commands.model.Command
-import java.lang.StringBuilder
 
 /** Contains command related utility methods. */
 object CommandUtils {
@@ -24,20 +23,53 @@ object CommandUtils {
    * be logged and/or surfaced in UI.
    */
   fun parseCommandForPrettyPrint(command: Command): String {
-    val stringBuilder =
-      StringBuilder()
-        .append("Id: ${command.commandId}\n")
-        .append("Create time: ${command.createTime}\n")
-        .append("Complete time: ${command.completeTime}\n")
-        .append("State: ${command.state}\n")
+    val message = buildString {
+      appendLine("Id: ${command.commandId}")
+      appendLine("Create time: ${command.createTime}")
+      appendLine("Complete time: ${command.completeTime}")
+      appendLine("State: ${command.state}")
+      appendLine("Kind: ${command.status.kind}")
 
-    when (command.status.kind) {
-      Command.StatusCase.Kind.CLEAR_APPS_DATA_STATUS ->
-        for ((key, value) in command.status.clearAppsDataStatus().statusMap) {
-          stringBuilder.append("\t").append(key).append(": ").append(value.clearStatus).append("\n")
+      when (command.status.kind) {
+        Command.StatusCase.Kind.CLEAR_APPS_DATA_STATUS ->
+          for ((key, value) in command.status.clearAppsDataStatus().statusMap) {
+            append("\t")
+            append(key)
+            append(": ")
+            append(value.clearStatus)
+            appendLine()
+          }
+        Command.StatusCase.Kind.INSTALL_CUSTOM_APP_STATUS -> {
+          val customAppOperationStatus = command.status.installCustomAppStatus()
+          append("\t")
+          appendLine("packageName: ${customAppOperationStatus.packageName}")
+          append("\t")
+          appendLine("operationStatus: ${customAppOperationStatus.operationStatus}")
+          append("\t")
+          appendLine("statusMessage: ${customAppOperationStatus.statusMessage}")
+          append("\t")
+          appendLine("otherPackageName: ${customAppOperationStatus.otherPackageName}")
+          append("\t")
+          appendLine("storagePath: ${customAppOperationStatus.storagePath}")
         }
-      else -> {}
+        Command.StatusCase.Kind.UNINSTALL_CUSTOM_APP_STATUS -> {
+          val customAppOperationStatus = command.status.uninstallCustomAppStatus()
+          append("\t")
+          appendLine("packageName: ${customAppOperationStatus.packageName}")
+          append("\t")
+          appendLine("operationStatus: ${customAppOperationStatus.operationStatus}")
+          append("\t")
+          appendLine("statusMessage: ${customAppOperationStatus.statusMessage}")
+          append("\t")
+          appendLine("otherPackageName: ${customAppOperationStatus.otherPackageName}")
+          append("\t")
+          appendLine("storagePath: ${customAppOperationStatus.storagePath}")
+        }
+        else -> {
+          append("Status: ${command.status}")
+        }
+      }
     }
-    return stringBuilder.toString()
+    return message
   }
 }
