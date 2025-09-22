@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.amapi.extensibility.demo.customapp
+package com.amapi.extensibility.demo.util
 
 import androidx.test.espresso.idling.CountingIdlingResource
 

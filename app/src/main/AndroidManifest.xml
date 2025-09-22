@@ -42,9 +42,14 @@
         <activity android:name=".customapp.CustomAppActivity"
             android:exported="true" />
 
+            <activity android:name=".requestdeviceinfo.RequestDeviceInfoActivity"
+            android:exported="true" />
+
         <service
           android:name=".notification.NotificationReceiverService"
-          android:exported="true" />
+          android:exported="true" >
+<meta-data   android:name="com.google.android.managementapi.notification.NotificationReceiverService.SERVICE_COMMAND_STATUS" android:value="" />
+          </service>
 
     <activity
         android:name="com.google.android.gms.oss.licenses.OssLicensesMenuActivity"

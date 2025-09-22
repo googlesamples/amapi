@@ -6,6 +6,11 @@
   <string name="command_id_hint" description="Input text field of command ID. [CHAR LIMIT=NONE]">Command Id</string>
   <string name="get_command_button" description="Button text for command to be fetched. [CHAR LIMIT=NONE]">Get command</string>
 
+  <string name="device_info" description="Device info label. [CHAR LIMIT=NONE]">Device Info</string>
+  <string name="issue_request_device_info_command" description="Issue Request Device info button text. [CHAR LIMIT=NONE]">Issue Request Device Info Command</string>
+  <string name="request_device_info_title" description="Request Device Info Title. [CHAR LIMIT=NONE]">Request Device Info</string>
+  <string name="device_info_placeholder" description="Device info placeholder. [CHAR LIMIT=NONE]">e.g., EID</string>
+  
   <string name="license_button_txt" description="See licenses button text. [CHAR LIMIT=NONE]">See Licenses</string>
   <string name="local_commands" description="Title of the button to navigate to local commands screen [CHAR LIMIT=NONE]">Local Commands</string>
   <string name="custom_app" description="Title of the button to navigate to Custom App commands screen [CHAR LIMIT=NONE]">Custom Apps (Package Installer)</string>

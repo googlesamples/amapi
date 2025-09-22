@@ -19,6 +19,7 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
+import com.amapi.extensibility.demo.util.AppIdlingResource
 import com.amapi.extensibility.demo.commands.InMemoryCommandRepository
 import com.amapi.extensibility.demo.customapp.CustomAppViewModel.UiState.ErrorType
 import com.amapi.extensibility.demo.customapp.CustomAppViewModel.UiState.ErrorType.COMMAND_EXECUTION_FAILED
