@@ -167,7 +167,6 @@ class CustomAppActivity : ComponentActivity() {
   @Composable
   private fun CustomInstallerAppBar() {
     TopAppBar(
-      // TODO: b/268157733 - Support navigation back to MainActivity.
       colors =
         TopAppBarDefaults.topAppBarColors(
           containerColor = MaterialTheme.colorScheme.primaryContainer,
@@ -274,7 +273,7 @@ class CustomAppActivity : ComponentActivity() {
       SelectionContainer {
         LazyColumn(
           modifier = Modifier.padding(10.dp).heightIn(max = 200.dp),
-          verticalArrangement = Arrangement.spacedBy(10.dp)
+          verticalArrangement = Arrangement.spacedBy(10.dp),
         ) {
           items(filePaths) { filePath -> Text(filePath) }
           item {

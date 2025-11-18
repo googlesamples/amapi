@@ -38,7 +38,7 @@ object CustomAppProvider : FileProvider(R.xml.file_provider_paths) {
   }
 
   /**
-   * Sends an intent to CloudDPC to provide the URI of the custom app with the given filename.
+   * Sends an intent to Android Device Policy to provide the URI of the custom app with the given filename.
    *
    * @param context the context of the application
    * @param filename the filename of the custom app
@@ -65,7 +65,7 @@ object CustomAppProvider : FileProvider(R.xml.file_provider_paths) {
   }
 
   /**
-   * Grants permission to CloudDPC to access the content URI of the provided file.
+   * Grants permission to Android Device Policy to access the content URI of the provided file.
    *
    * @param context the context of the application
    * @param contentUri the content URI of the custom app

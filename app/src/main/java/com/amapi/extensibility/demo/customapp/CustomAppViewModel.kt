@@ -100,7 +100,7 @@ class CustomAppViewModel(private val customAppRepository: CustomAppRepository) :
   }
 
   /**
-   * Sends install app command to CloudDPC to initiate installation of the app with the
+   * Sends install app command to Android Device Policy to initiate installation of the app with the
    * [packageName].
    */
   fun installApp(packageName: String, handleFileProvider: Boolean) {

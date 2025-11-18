@@ -41,11 +41,12 @@ interface CustomAppRepository {
    */
   suspend fun downloadAppToInternalStorage(packageName: String, downloadUrl: String): Result<Unit>
 
-  /** Grants CloudDPC file permission of the apk file of the provided [packageName]. */
+  /** Grants Android Device Policy file permission of the apk file of the provided [packageName]. */
   fun grantFilePermissionToDeviceManager(packageName: String)
 
   /**
-   * Sends an INSTALL_APP command to CloudDPC to install the app with the provided [packageName].
+   * Sends an INSTALL_APP command to Android Device Policy to install the app with the provided
+   * [packageName].
    *
    * @param packageName The package name of the app to be installed.
    * @param handleFileProvider Indicates whether to handle the creation of a content URI within the
@@ -54,7 +55,7 @@ interface CustomAppRepository {
    *   path.
    * @return A [Result] object indicating the success or failure of the operation.
    * @throws IllegalStateException If `handleFileProvider` is true but the required URI permissions
-   *   have not been granted to CloudDPC.
+   *   have not been granted to Android Device Policy.
    */
   suspend fun sendInstallAppCommandToDeviceManager(
     packageName: String,
@@ -68,7 +69,7 @@ interface CustomAppRepository {
   fun resetDownloadedFiles()
 
   /**
-   * Sends an UNINSTALL_APP command to CloudDPC to uninstall the app with the provided
+   * Sends an UNINSTALL_APP command to Android Device Policy to uninstall the app with the provided
    * [packageName].
    */
   suspend fun sendUninstallAppCommandToDeviceManager(packageName: String): Result<Unit>
@@ -148,7 +149,7 @@ class CustomAppRepositoryImpl(
   ): Result<Unit> {
     if (handleFileProvider && !packageNameToUri.containsKey(packageName)) {
       return Result.failure(
-        IllegalStateException("Invalid state, CloudDPC should be granted file permissions first.")
+        IllegalStateException("Invalid state, Android Device Policy should be granted file permissions first.")
       )
     }
 
