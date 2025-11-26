@@ -343,12 +343,10 @@ class CustomAppActivity : ComponentActivity() {
   }
 
   private companion object {
-    // URL and package name of an example app (Android Material Catalog), used to prefill the
-    // Download URL text field
-    // for ease of testing.
-    const val DEMO_APP_URL =
-      "https://storage.googleapis.com/extensibility-test-app-custom-install-demo/androidx_compose_material_catalog.apk"
-    const val DEMO_PACKAGE_NAME = "androidx.compose.material.catalog"
+    URL and package name of an example app, used to prefill the
+    Download URL text field for ease of testing.
+    const val DEMO_APP_URL = "[URL_TO_APK]"
+    const val DEMO_PACKAGE_NAME = "[APP_PACKAGE_NAME]"
     const val OPERATION_PACKAGE_NAME_TEST_TAG = "operation_package_name"
     const val DOWNLOAD_PACKAGE_NAME_TEST_TAG = "download_package_name"
     const val DOWNLOAD_URL_TEST_TAG = "download_url"
