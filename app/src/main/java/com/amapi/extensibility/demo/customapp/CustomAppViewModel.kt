@@ -19,7 +19,6 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import com.amapi.extensibility.demo.util.AppIdlingResource
 import com.amapi.extensibility.demo.commands.InMemoryCommandRepository
 import com.amapi.extensibility.demo.customapp.CustomAppViewModel.UiState.ErrorType
 import com.amapi.extensibility.demo.customapp.CustomAppViewModel.UiState.ErrorType.COMMAND_EXECUTION_FAILED
@@ -104,7 +103,6 @@ class CustomAppViewModel(private val customAppRepository: CustomAppRepository) :
    * [packageName].
    */
   fun installApp(packageName: String, handleFileProvider: Boolean) {
-    AppIdlingResource.increment()
     viewModelScope.launch {
       if (packageName.isEmpty()) {
         Log.e(TAG, "Package name is empty")
@@ -115,7 +113,6 @@ class CustomAppViewModel(private val customAppRepository: CustomAppRepository) :
             filePaths = customAppRepository.getDownloadedFilesPaths(),
           )
         )
-        AppIdlingResource.decrement()
       } else {
         if (handleFileProvider) {
           customAppRepository.grantFilePermissionToDeviceManager(packageName)
@@ -126,7 +123,6 @@ class CustomAppViewModel(private val customAppRepository: CustomAppRepository) :
             _uiState.emit(
               UiState(Stage.COMMAND_SENT, filePaths = customAppRepository.getDownloadedFilesPaths())
             )
-            AppIdlingResource.decrement()
           }
           .onFailure { exception ->
             Log.e(TAG, "onFailure: ")
@@ -138,14 +134,12 @@ class CustomAppViewModel(private val customAppRepository: CustomAppRepository) :
                 filePaths = customAppRepository.getDownloadedFilesPaths(),
               )
             )
-            AppIdlingResource.decrement()
           }
       }
     }
   }
 
   fun uninstallApp(packageName: String) {
-    AppIdlingResource.increment()
     viewModelScope.launch {
       if (packageName.isEmpty()) {
         Log.e(TAG, "Package name is empty")
@@ -156,7 +150,6 @@ class CustomAppViewModel(private val customAppRepository: CustomAppRepository) :
             filePaths = customAppRepository.getDownloadedFilesPaths(),
           )
         )
-        AppIdlingResource.decrement()
       } else {
         customAppRepository
           .sendUninstallAppCommandToDeviceManager(packageName)
@@ -164,7 +157,6 @@ class CustomAppViewModel(private val customAppRepository: CustomAppRepository) :
             _uiState.emit(
               UiState(Stage.COMMAND_SENT, filePaths = customAppRepository.getDownloadedFilesPaths())
             )
-            AppIdlingResource.decrement()
           }
           .onFailure { exception ->
             _uiState.emit(
@@ -175,7 +167,6 @@ class CustomAppViewModel(private val customAppRepository: CustomAppRepository) :
                 filePaths = customAppRepository.getDownloadedFilesPaths(),
               )
             )
-            AppIdlingResource.decrement()
           }
       }
     }

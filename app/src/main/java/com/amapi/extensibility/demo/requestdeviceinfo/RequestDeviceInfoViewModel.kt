@@ -21,7 +21,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.amapi.extensibility.demo.commands.CommandUtils
 import com.amapi.extensibility.demo.commands.InMemoryCommandRepository
-import com.amapi.extensibility.demo.util.AppIdlingResource
 import com.google.android.managementapi.commands.LocalCommandClientFactory
 import com.google.android.managementapi.commands.model.GetCommandRequest
 import com.google.android.managementapi.commands.model.IssueCommandRequest
@@ -54,9 +53,6 @@ class RequestDeviceInfoViewModel(private val application: Application) : ViewMod
       return
     }
 
-    // Increment Idling Resource before starting async work
-    AppIdlingResource.increment()
-
     viewModelScope.launch {
       try {
         val issueCommandRequest =
@@ -68,17 +64,13 @@ class RequestDeviceInfoViewModel(private val application: Application) : ViewMod
             .build()
         val command =
           LocalCommandClientFactory.create(application.applicationContext)
-            .issueCommand(issueCommandRequest)
+            .issueCommandAwait(issueCommandRequest)
 
-        command.await()
         _uiState.value = CommandUiState.Success("Command successful: $command")
         // Command result is populated by NotificationReceiverService
       } catch (exception: Exception) {
         Log.e(TAG, "onFailure", exception)
         _uiState.value = CommandUiState.Error("Failed to execute command: ${exception.message}")
-      } finally {
-        // Decrement Idling Resource when async work is done
-        AppIdlingResource.decrement()
       }
     }
   }

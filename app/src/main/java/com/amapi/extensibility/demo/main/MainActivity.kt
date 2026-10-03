@@ -12,23 +12,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.amapi.extensibility.demo.util
+package com.amapi.extensibility.demo.main
 
-import androidx.test.espresso.idling.CountingIdlingResource
+import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
 
-object AppIdlingResource {
-  private const val RESOURCE = "GENERAL_RESOURCE"
-  private val countingIdlingResource: CountingIdlingResource = CountingIdlingResource(RESOURCE)
-
-  fun getIdlingResource() = countingIdlingResource
-
-  fun increment() {
-    countingIdlingResource.increment()
-  }
-
-  fun decrement() {
-    if (!countingIdlingResource.isIdleNow) {
-      countingIdlingResource.decrement()
-    }
+class MainActivity : ComponentActivity() {
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    setContent { MainActivityContent(navItems = navigationItems) }
   }
 }

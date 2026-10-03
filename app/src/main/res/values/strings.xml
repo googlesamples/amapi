@@ -45,4 +45,39 @@
  <string name="error_package_name_not_specified" description="Message to be shown when the user has not provided a package name [CHAR LIMIT=NONE]">Package name is not specified!</string>
   <string name="error_download_failed" description="Message to be shown when the download has failed [CHAR LIMIT=NONE]">Failed to download apk!</string>
   <string name="error_command_execution_failed" description="Message to be shown when the command execution has failed [CHAR LIMIT=NONE]">Failed to execute command!</string>
+
+  <string name="account_setup" description="Title of the button to navigate to account setup screen [CHAR LIMIT=NONE]">Account Setup</string>
+  <string name="account_setup_result" description="Text view for account setup result [CHAR LIMIT=NONE]">Account Setup Result</string>
+  <string name="start_account_setup_button" description="Button text for starting account setup. [CHAR LIMIT=NONE]">Start Account Setup</string>
+  <string name="launch_auth_activity_button" description="Button text for launching authentication activity. [CHAR LIMIT=NONE]">Launch Auth Activity</string>
+  <string name="list_account_setup_attempts_button" description="Button text for listing account setup attempts. [CHAR LIMIT=NONE]">List Account Setup Attempts</string>
+  <string name="cancel_account_setup_attempt_button" description="Button text for canceling account setup attempt. [CHAR LIMIT=NONE]">Cancel Account Setup Attempt</string>
+  <string name="error_no_current_attempt_auth" description="Error message when launching auth activity with no current attempt [CHAR LIMIT=NONE]">No current attempt available. Please start or list setup first.</string>
+  <string name="error_no_current_attempt_cancel" description="Error message when canceling account setup with no current attempt [CHAR LIMIT=NONE]">No current attempt to cancel.</string>
+
+  <string name="dpc_migration" description="Title of the button to navigate to DPC Migration screen [CHAR LIMIT=NONE]">DPC Migration</string>
+  <string name="start_migration_button" description="Button text for starting migration. [CHAR LIMIT=NONE]">Start Migration</string>
+
+  <string name="get_device_trust" description = "Label of the button to send request for device trust signals[CHAR LIMIT=NONE]">Get Device Trust</string>
+  <string name="device_trust" description="Title of the button to navigate to Device Trust screen [CHAR LIMIT=NONE]">Device Trust</string>
+  
+  <string name="get_environment" description = "Label of the button to send request for get environment API[CHAR LIMIT=NONE]">Get Environment</string>
+  <string name="prepare_environment" description = "Label of the button to send request for prepare environment API[CHAR LIMIT=NONE]">Prepare Environment</string>
+  <string name="environment_title" description="Title of the button to navigate to Environment screen [CHAR LIMIT=NONE]">Environment</string>
+
+  <string name="oem_system_update_screen_title" description="Title for the OEM system update screen [CHAR LIMIT=NONE]">OEM System Update Demo</string>
+  <string name="api_level_change" description="Label for checkbox indicating API level change [CHAR LIMIT=NONE]">Has API level change</string>
+  <string name="create_system_update" description="Button text to create a system update [CHAR LIMIT=NONE]">Create System Update</string>
+  <string name="list_system_updates" description="Button text to list system updates [CHAR LIMIT=NONE]">List System Updates</string>
+  <string name="get_system_update" description="Button text to get a system update [CHAR LIMIT=NONE]">Get System Update</string>
+  <string name="create_oem_system_update_screen_title" description="Title for the create OEM system update screen [CHAR LIMIT=NONE]">Create OEM System Update</string>
+  <string name="create_button" description="Button text to create [CHAR LIMIT=NONE]">Create</string>
+  <string name="system_update_name_label" description="Label for the system update name input field [CHAR LIMIT=NONE]">System Update Name</string>
+  <string name="status_label" description="Label for the status section [CHAR LIMIT=NONE]">Status:</string>
+  <string name="notifications_log_label" description="Label for the notifications log section [CHAR LIMIT=NONE]">Notifications Log:</string>
+  <string name="role_none" description="Label for no role selected [CHAR LIMIT=NONE]">None</string>
+
+  <string name="getting_environment" description="Snackbar message when getting environment [CHAR LIMIT=NONE]">Getting environment…</string>
+  <string name="preparing_environment" description="Snackbar message when preparing environment [CHAR LIMIT=NONE]">Preparing environment…</string>
+  <string name="app_roles_title" description="Title of the button to navigate to App Roles screen [CHAR LIMIT=NONE]">App Roles</string>
 </resources>

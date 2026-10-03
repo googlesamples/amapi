@@ -61,7 +61,6 @@ import kotlinx.coroutines.launch
 /** Screen where request device info local commands can be issued and status can be obtained */
 class RequestDeviceInfoActivity : ComponentActivity() {
   private lateinit var requestDeviceInfoViewModel: RequestDeviceInfoViewModel
-
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
 
@@ -156,7 +155,11 @@ class RequestDeviceInfoActivity : ComponentActivity() {
       modifier = Modifier.testTag(COMMAND_ID_TAG),
     )
     Spacer(modifier = Modifier.height(10.dp))
-    ElevatedButton(onClick = { requestDeviceInfoViewModel.getCommand(commandId) }) {
+    ElevatedButton(
+      onClick = {
+        requestDeviceInfoViewModel.getCommand(commandId)
+      }
+    ) {
       Text(text = getString(R.string.get_command))
     }
     Spacer(modifier = Modifier.height(10.dp))
@@ -173,7 +176,9 @@ class RequestDeviceInfoActivity : ComponentActivity() {
       modifier = Modifier.testTag(DEVICE_INFO_TAG),
     )
     ElevatedButton(
-      onClick = { requestDeviceInfoViewModel.issueRequestDeviceInfoCommand(deviceInfo) }
+      onClick = {
+        requestDeviceInfoViewModel.issueRequestDeviceInfoCommand(deviceInfo)
+      }
     ) {
       Text(text = getString(R.string.issue_request_device_info_command))
     }

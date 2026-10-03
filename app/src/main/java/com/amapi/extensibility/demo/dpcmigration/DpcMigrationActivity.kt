@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.amapi.extensibility.demo.commands
+package com.amapi.extensibility.demo.dpcmigration
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -25,10 +25,14 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
+import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -42,55 +46,71 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.ViewModelProvider
 import com.amapi.extensibility.demo.R
 
-class CommandActivity : ComponentActivity() {
-  private lateinit var commandViewModel: CommandViewModel
+/** Activity for DPC Migration. */
+class DpcMigrationActivity : ComponentActivity() {
+
+  private lateinit var viewModel: DpcMigrationViewModel
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    commandViewModel = ViewModelProvider(this).get(CommandViewModel::class.java)
+    viewModel = ViewModelProvider(this)[DpcMigrationViewModel::class.java]
 
     setContent {
       Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
-        val commandResult by commandViewModel.commandResult.collectAsState()
-        CommandScreen(commandResult)
+        val migrationResult by viewModel.dpcMigrationResult.collectAsState()
+        DpcMigrationScreen(migrationResult)
       }
     }
   }
 
   @Composable
-  fun CommandScreen(commandResult: String) {
-    var commandId by remember { mutableStateOf("") }
-    var packageName by remember { mutableStateOf("") }
+  @OptIn(ExperimentalMaterial3Api::class)
+  private fun DpcMigrationScreen(migrationResult: String?) {
+    Scaffold(
+      topBar = {
+        TopAppBar(
+          colors =
+            TopAppBarDefaults.topAppBarColors(
+              containerColor = MaterialTheme.colorScheme.primaryContainer,
+              titleContentColor = MaterialTheme.colorScheme.primary,
+            ),
+          title = { Text(text = stringResource(R.string.dpc_migration)) },
+        )
+      }
+    ) { innerPadding ->
+      DpcMigrationScreenContent(migrationResult, Modifier.padding(innerPadding))
+    }
+  }
+
+  @Composable
+  private fun DpcMigrationScreenContent(migrationResult: String?, modifier: Modifier = Modifier) {
+    val scrollState = rememberScrollState()
+
     Column(
-      modifier = Modifier.fillMaxSize().padding(16.dp).verticalScroll(rememberScrollState()),
+      modifier = modifier.then(Modifier.fillMaxSize().padding(16.dp).verticalScroll(scrollState)),
       horizontalAlignment = Alignment.CenterHorizontally,
-      verticalArrangement = Arrangement.spacedBy(32.dp, Alignment.CenterVertically),
+      verticalArrangement = Arrangement.spacedBy(8.dp),
     ) {
-      Text(text = commandResult)
+      val buttonModifier = Modifier.fillMaxWidth()
 
-      OutlinedTextField(
-        value = commandId,
-        onValueChange = { commandId = it },
+      var tokenEt by remember { mutableStateOf("token") }
+
+      TextField(
+        value = tokenEt,
+        onValueChange = { tokenEt = it },
+        label = { Text("Enrollment Token") },
         modifier = Modifier.fillMaxWidth(),
-        label = { Text(stringResource(R.string.command_id_hint)) },
-        singleLine = true,
       )
 
-      Button(onClick = { commandViewModel.getCommand(commandId) }) {
-        Text(stringResource(R.string.get_command_button))
+      Button(onClick = { viewModel.startMigration(tokenEt) }, modifier = buttonModifier) {
+        Text(text = stringResource(R.string.start_migration_button))
       }
 
-      OutlinedTextField(
-        value = packageName,
-        onValueChange = { packageName = it },
-        modifier = Modifier.fillMaxWidth(),
-        label = { Text(stringResource(R.string.clear_app_name_hint)) },
-        singleLine = true,
+      Text(
+        text = migrationResult ?: "Dpc Migration Result",
+        modifier = Modifier.padding(top = 24.dp),
+        color = MaterialTheme.colorScheme.onSurface,
       )
-
-      Button(onClick = { commandViewModel.issueClearAppDataCommand(packageName) }) {
-        Text(stringResource(R.string.clear_app_button))
-      }
     }
   }
 }
