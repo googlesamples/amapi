@@ -343,8 +343,8 @@ class CustomAppActivity : ComponentActivity() {
   }
 
   private companion object {
-    URL and package name of an example app, used to prefill the
-    Download URL text field for ease of testing.
+    // URL and package name of an example app, used to prefill the
+    // Download URL text field for ease of testing.
     const val DEMO_APP_URL = "[URL_TO_APK]"
     const val DEMO_PACKAGE_NAME = "[APP_PACKAGE_NAME]"
     const val OPERATION_PACKAGE_NAME_TEST_TAG = "operation_package_name"

@@ -17,6 +17,8 @@
     package="com.amapi.extensibility.demo" >
 
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+
 
     <queries>
         <package android:name="com.google.android.apps.work.clouddpc" />
@@ -31,29 +33,64 @@
         android:taskAffinity=""
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".commands.CommandActivity"
+            android:name=".main.MainActivity"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+      <activity
+          android:name=".commands.CommandActivity"
+          android:exported="true" />
+
 
         <activity android:name=".customapp.CustomAppActivity"
             android:exported="true" />
 
-            <activity android:name=".requestdeviceinfo.RequestDeviceInfoActivity"
+        <activity android:name=".requestdeviceinfo.RequestDeviceInfoActivity"
+        android:exported="true" />
+
+        <activity android:name=".accountsetup.AccountSetupActivity"
             android:exported="true" />
+
+        <activity android:name=".dpcmigration.DpcMigrationActivity"
+            android:exported="true" />
+
+        <activity android:name=".devicetrust.DeviceTrustSignalsActivity"
+            android:exported="true" />
+
+        <activity
+            android:name=".environment.EnvironmentActivity"
+            android:exported="true" />
+
+        <activity android:name=".oemsystemupdate.OemSystemUpdateActivity"
+            android:exported="true" />
+
+        <receiver android:name=".receiver.DeviceAdminReceiver"
+            android:permission="android.permission.BIND_DEVICE_ADMIN"
+            android:exported="true">
+            <meta-data android:name="android.app.device_admin"
+                android:resource="@xml/device_admin_receiver" />
+            <intent-filter>
+                <action android:name="android.app.action.DEVICE_ADMIN_ENABLED" />
+            </intent-filter>
+        </receiver>
 
         <service
           android:name=".notification.NotificationReceiverService"
           android:exported="true" >
-<meta-data   android:name="com.google.android.managementapi.notification.NotificationReceiverService.SERVICE_COMMAND_STATUS" android:value="" />
+            <meta-data android:name="com.google.android.managementapi.notification.NotificationReceiverService.SERVICE_COMMAND_STATUS" android:value="" />
+            <meta-data android:name="com.google.android.managementapi.notification.NotificationReceiverService.SERVICE_APP_ROLES" android:value="" />
           </service>
 
     <activity
         android:name="com.google.android.gms.oss.licenses.OssLicensesMenuActivity"
         android:exported="false"/>
+    <activity
+        android:name=".approles.AppRolesActivity"
+        android:exported="false"
+        android:label="@string/app_roles_title"/>
 
     <activity
         android:name="com.google.android.gms.oss.licenses.OssLicensesActivity"

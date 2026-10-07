@@ -12,21 +12,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.amapi.extensibility.demo.commands
+package com.amapi.extensibility.demo.approles
 
-import com.google.android.managementapi.commands.model.Command
+import com.google.android.managementapi.approles.model.AppRolesSetRequest
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.StateFlow
 
-object InMemoryCommandRepository {
-  private val _commandResult = MutableStateFlow("")
-  val commandResult = _commandResult.asStateFlow()
+object InMemoryAppRolesRepository {
+  private val _appRolesSetRequest = MutableStateFlow<AppRolesSetRequest?>(null)
+  val appRolesSetRequest: StateFlow<AppRolesSetRequest?> = _appRolesSetRequest
 
-  fun onCommandStatusChanged(command: Command) {
-    _commandResult.value = CommandUtils.parseCommandForPrettyPrint(command)
-  }
-
-  fun setValue(value: String) {
-    _commandResult.value = value
+  fun onAppRolesSet(request: AppRolesSetRequest) {
+    _appRolesSetRequest.value = request
   }
 }

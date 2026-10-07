@@ -13,13 +13,6 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<resources>
-  <color name="colorPrimary">#4285F4</color>
-  <color name="colorPrimaryDark">#185ABC</color>
-  <color name="colorAccent">#D2E3FC</color>
-  <color name="ic_launcher_background">#000000</color>
-  <color name="success_green">#008000</color>
-  <color name="status_yellow">#FBC02D</color>
-  <color name="result_success_background">#E8F5E9</color>
-  <color name="result_failure_background">#FFEBEE</color>
-</resources>
+<device-admin xmlns:android="http://schemas.android.com/apk/res/android">
+  <support-transfer-ownership/>
+</device-admin>
