@@ -80,4 +80,13 @@
   <string name="getting_environment" description="Snackbar message when getting environment [CHAR LIMIT=NONE]">Getting environment…</string>
   <string name="preparing_environment" description="Snackbar message when preparing environment [CHAR LIMIT=NONE]">Preparing environment…</string>
   <string name="app_roles_title" description="Title of the button to navigate to App Roles screen [CHAR LIMIT=NONE]">App Roles</string>
+  <string name="policy_screen_title" translatable="false">Policy Client</string>
+  <string name="get_policy" translatable="false">Get Policy</string>
+  <string name="update_policy" translatable="false">Update Policy</string>
+  <string name="local_wipe_title" translatable="false">Local Wipe Command</string>
+  <string name="wipe_reason_hint" translatable="false">Wipe reason (optional)</string>
+  <string name="preserve_reset_protection_label" translatable="false">Preserve Reset Protection Data</string>
+  <string name="wipe_external_storage_label" translatable="false">Wipe External Storage</string>
+  <string name="wipe_esims_label" translatable="false">Wipe eSIMs</string>
+  <string name="issue_wipe_button" translatable="false">Issue Wipe Command</string>
 </resources>

@@ -44,7 +44,9 @@ import com.amapi.extensibility.demo.customapp.CustomAppActivity
 import com.amapi.extensibility.demo.devicetrust.DeviceTrustSignalsActivity
 import com.amapi.extensibility.demo.dpcmigration.DpcMigrationActivity
 import com.amapi.extensibility.demo.environment.EnvironmentActivity
+import com.amapi.extensibility.demo.localwipe.LocalWipeActivity
 import com.amapi.extensibility.demo.oemsystemupdate.OemSystemUpdateActivity
+import com.amapi.extensibility.demo.policy.PolicyActivity
 import com.amapi.extensibility.demo.requestdeviceinfo.RequestDeviceInfoActivity
 
 import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
@@ -87,8 +89,9 @@ fun ExtensibilityDemoScreen(modifier: Modifier = Modifier, navItems: List<Naviga
   }
 }
 
-fun Context.navigateTo(activityClass: Class<out Activity>) =
+fun Context.navigateTo(activityClass: Class<out Activity>) {
   startActivity(Intent(this, activityClass))
+}
 
 @Composable
 fun NavigationButton(name: String, modifier: Modifier = Modifier, onClick: () -> Unit = {}) {
@@ -97,7 +100,7 @@ fun NavigationButton(name: String, modifier: Modifier = Modifier, onClick: () ->
 
 data class NavigationItem(val nameResId: Int, val activity: Class<out Activity>)
 
-val navigationItems =
+val navigationItems: List<NavigationItem> =
   listOf(
     NavigationItem(R.string.local_commands, CommandActivity::class.java),
     NavigationItem(R.string.custom_app, CustomAppActivity::class.java),
@@ -108,5 +111,7 @@ val navigationItems =
     NavigationItem(R.string.environment_title, EnvironmentActivity::class.java),
     NavigationItem(R.string.oem_system_update_screen_title, OemSystemUpdateActivity::class.java),
     NavigationItem(R.string.app_roles_title, AppRolesActivity::class.java),
+    NavigationItem(R.string.policy_screen_title, PolicyActivity::class.java),
+    NavigationItem(R.string.local_wipe_title, LocalWipeActivity::class.java),
     NavigationItem(R.string.license_button_txt, OssLicensesMenuActivity::class.java),
   )

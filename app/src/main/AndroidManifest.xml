@@ -67,6 +67,16 @@
         <activity android:name=".oemsystemupdate.OemSystemUpdateActivity"
             android:exported="true" />
 
+        <!-- Exported only for `adb shell am start` scripting. DUMP keeps third-party apps out;
+             launches from this app (same uid) are exempt. -->
+        <activity android:name=".policy.PolicyActivity"
+            android:exported="true"
+            android:permission="android.permission.DUMP" />
+
+        <activity android:name=".localwipe.LocalWipeActivity"
+            android:exported="true"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+
         <receiver android:name=".receiver.DeviceAdminReceiver"
             android:permission="android.permission.BIND_DEVICE_ADMIN"
             android:exported="true">
