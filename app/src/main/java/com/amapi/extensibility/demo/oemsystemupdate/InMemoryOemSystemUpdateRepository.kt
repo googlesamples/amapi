@@ -15,6 +15,7 @@
 package com.amapi.extensibility.demo.oemsystemupdate
 
 import android.content.Context
+import android.os.Build
 import com.google.android.managementapi.oemsystemupdate.OemSystemUpdateClientFactory
 import com.google.android.managementapi.oemsystemupdate.model.CreateSystemUpdateRequest
 import com.google.android.managementapi.oemsystemupdate.model.GetSystemUpdateRequest
@@ -54,12 +55,15 @@ class InMemoryOemSystemUpdateRepository(private val context: Context) : OemSyste
         } else {
           SystemUpdate.ApiLevelChange.API_LEVEL_CHANGE_WITHOUT_API_LEVEL_CHANGE
         }
+      // A major update moves to the next API level; other updates keep the current one.
+      val apiLevel = if (isApiLevelChange) Build.VERSION.SDK_INT + 1 else Build.VERSION.SDK_INT
       val request =
         CreateSystemUpdateRequest.builder()
           .setSystemUpdate(
             SystemUpdate.builder()
               .setName(name)
               .setApiLevelChange(apiLevelChange)
+              .setApiLevel(apiLevel)
               .setSecurityPatchLevel("2026-06-15")
               .setReceivedTime(Instant.now())
               .build()
